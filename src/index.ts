@@ -1,3 +1,2 @@
-export function hello(): string {
-  return "world";
-}
+export * as Either from './Either';
+export * as TaskEither from './TaskEither';
