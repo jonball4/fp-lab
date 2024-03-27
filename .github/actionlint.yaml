@@ -1,7 +1,0 @@
-self-hosted-runner:
-  # These are official runners, but must be specified manually until
-  # https://github.com/rhysd/actionlint/issues/337 is resolved
-  labels:
-    - ubuntu-latest-4-cores
-    - ubuntu-latest-8-cores
-    - ubuntu-latest-16-cores

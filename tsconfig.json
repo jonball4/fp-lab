@@ -1,8 +1,15 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es2020",
-    "lib": ["es2020"],
+    "target": "es2022",
+    "lib": ["es2022"],
     "module": "commonjs",
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "src/@types/*"
+      ]
+    },
     "esModuleInterop": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
@@ -26,5 +33,5 @@
     "removeComments": true,
     "outDir": "dist"
   },
-  "include": ["src/**/*", "test/**/*", "test/mocha.json"]
+  "include": ["src/**/*", "test/**/*", "test/.mocharc.json"]
 }

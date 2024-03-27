@@ -14,17 +14,30 @@
     "dist/src/"
   ],
   "scripts": {
+    "local-db:nobuild": "echo no local db",
+    "local-db": "echo no local db",
     "build": "tsc --build --incremental --verbose .",
     "clean": "rm -rf -- dist",
-    "test": "c8 node --loader tsx --test test/*.test.ts"
+    "pretest": "if [ ! -z $CI ]; then npm run pretest:ci ; fi",
+    "pretest:ci": "npm run local-db:nobuild",
+    "test": "npm run test:cov npm run test:unit && npm run test:cov:report",
+    "test:cov": "c8 --reporter=lcov --",
+    "test:cov:report": "c8 report --check-coverage=true --reporter=html --reporter=text --reporter=text-summary",
+    "test:unit": "npm run test:args -- \"test/**/*.test.ts\"",
+    "test:args": "TS_NODE_TRANSPILE_ONLY=true mocha --import=tsx --config test/.mocharc.json --"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
     "@types/node": "20.11.25",
     "c8": "9.1.0",
-    "tsx": "4.7.1",
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "ts-node": "^10.9.2",
     "typescript": "4.7.4"
   },
-  "publishConfig": {
-    "registry": "https://artifactory.bitgo-ci.com/artifactory/api/npm/npm_private/"
+  "dependencies": {
+    "fp-ts": "^2.16.1",
+    "tsx": "^4.7.1"
   }
 }
