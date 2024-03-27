@@ -1,0 +1,30 @@
+---
+version: 2
+updates:
+  # Enable GitHub Actions updates
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+      - github-actions
+
+  # Enable npm updates
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    versioning-strategy: widen
+    labels:
+      - dependencies
+      - npm
+    ignore:
+      # Ignore all @types/nodes patch updates, since
+      # this package updates so frequently
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-patch"]
+      # Ignore experimental io-ts versions, which are
+      # incompatible with the stable releases
+      - dependency-name: "io-ts"
+        versions: ["2.x"]

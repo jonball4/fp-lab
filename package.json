@@ -1,0 +1,30 @@
+{
+  "name": "@bitgo-private/fp-lab",
+  "version": "0.0.0-semantic-release-managed",
+  "description": "",
+  "license": "UNLICENSED",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonball4/fp-lab.git"
+  },
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist/src/"
+  ],
+  "scripts": {
+    "build": "tsc --build --incremental --verbose .",
+    "clean": "rm -rf -- dist",
+    "test": "c8 node --loader tsx --test test/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.25",
+    "c8": "9.1.0",
+    "tsx": "4.7.1",
+    "typescript": "4.7.4"
+  },
+  "publishConfig": {
+    "registry": "https://artifactory.bitgo-ci.com/artifactory/api/npm/npm_private/"
+  }
+}

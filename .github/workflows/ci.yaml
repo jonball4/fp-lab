@@ -1,0 +1,14 @@
+---
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    uses: BitGo/gha-release-typescript-library/.github/workflows/ci.yml@v1
+    with:
+      node-versions: '["lts/*"]'
+      artifactory-username: ${{ vars.ARTIFACTORY_USERNAME }}
+    secrets:
+      artifactory-api-key: ${{ secrets.ARTIFACTORY_API_KEY }}
